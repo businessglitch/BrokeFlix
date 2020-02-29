@@ -8,3 +8,26 @@ body {
 #headshot {
     width: 500px;
 }
+
+
+#progressBar {
+  width: 500px;
+  height: 2px;
+  background-color: black;
+  float: left;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+#player-controls {
+  float: left;
+}
+
+#square {
+  background-color: orange;
+  top: -5px;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  outline: 3px solid black;
+}
