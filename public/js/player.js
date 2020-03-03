@@ -36,6 +36,7 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
     progressBarLoop();
     initalizeButtons();  
+    $("#videoDuration").text(convertSecondsToString(getDuration()))
 }
 
 function playVideo(){
@@ -77,14 +78,14 @@ function initalizeButtons(){
     playButton.click(function(event){
     //    playVideo();
 
-        let myData = {state:'play', time: player.getCurrentTime()}
+        let myData = {state:'play', time: getCurrentTime()}
         socket.emit('event', myData);
     });
 
     pauseButton.click(function(event){
     //    pauseVideo();
 
-        let myData = {state:'pause', time: player.getCurrentTime()}
+        let myData = {state:'pause', time: getCurrentTime()}
         socket.emit('event', myData);
     });
 
@@ -117,7 +118,8 @@ function progressBarLoop() {
             return;
         }
         let fraction = (getCurrentTime()/getDuration()) * 100;
-        
+        $("#videoRemainingTime").text(convertSecondsToString(getCurrentTime()));
+        console.log(convertSecondsToString(getCurrentTime()));
         progressSquare.css('left', fraction.toString()+'%');
     },200);
 }
@@ -128,6 +130,13 @@ function showPlayerErrors(event) {
 
 function changeVideo(id) {
     player.loadVideoById(id)
+}
+
+function convertSecondsToString(time){
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time - minutes * 60);
+
+    return `${minutes}:${seconds}`;
 }
 
 let socket = io();

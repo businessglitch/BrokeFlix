@@ -32,3 +32,7 @@ body {
   position: relative;
   outline: 3px solid black;
 }
+
+#videoRemainingTime, #videoDuration {
+  color:white;
+}

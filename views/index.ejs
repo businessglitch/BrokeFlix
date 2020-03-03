@@ -18,14 +18,10 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+    <!-- <div class="container"> <img src="img/logo.png"  width="250px" height="250px"/></div> -->
 
     <div class="container">
+      
           <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
       <div id="player"></div>
       <div id="video-control-bar">
@@ -44,14 +40,17 @@
           </button>
         </div>
       </div>
+     
+    </div>
+    <!-- /.container -->
+    <div class="container"> 
       <form class="form-inline" onsubmit="submitForm()" target="_blank">
-        <div class="form-group mx-sm-3 mb-2">
-          <!-- <label for="inputPassword2" class="sr-only">Video ID</label> -->
-          <input type="text" class="form-control" id="videoIdValue" placeholder="VideoID">
-        </div>
-        <button type="button" id="videoID" class="btn btn-primary mb-2">Submit</button>
-      </form>
-    </div><!-- /.container -->
+      <div class="form-group mx-sm-3 mb-2">
+        <!-- <label for="inputPassword2" class="sr-only">Video ID</label> -->
+        <input type="text" class="form-control" id="videoIdValue" placeholder="VideoID">
+      </div>
+      <button type="button" id="videoID" class="btn btn-primary mb-2">Submit</button>
+    </form></div>
 
 
     <!-- Bootstrap core JavaScript
