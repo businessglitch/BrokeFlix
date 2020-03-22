@@ -14,17 +14,15 @@ body {
 #video-section {
   display: none;
   float: left;
-  width: 650px;
-  margin-top: 50px;
-  
+  width: 100%; 
 }
 
 #video-control-bar { 
-  margin-top: 20px;
-  width: 700px;
-  height: 80px;
+  width: 80%;
+  height: 90px;
   border: white 1px solid;
   padding: 20px;
+  background-color: black;
 
 }
 
@@ -57,7 +55,16 @@ body {
 }
 
 #videoSubmission {
-  margin-top: 100px;
+  float: right;
+}
+
+#videoIdValue {
+  height: 50px;
+  width: 300px;
+}
+
+#videoID {
+  height: 50px;
 }
 
 
@@ -150,21 +157,18 @@ body {
 #chat-section {
   background-color: white;
   width: 300px;
-  height: 500px;
-  margin-right: 20px;
-  margin-top: 50px;
+  height: 100%;
   display: none;
   position: absolute;
   right: 0;
 }
 
 #chat-header {
-  border-bottom: solid 1.5px black;
   padding: 15px;
   text-align: center;
   font-weight: bold;
-  color: white;
-  background: lightskyblue;
+  color: black;
+  border-bottom: solid 1px rgba(0,0,0,0.1))
 }
 
 
@@ -176,7 +180,7 @@ body {
 }
 
 #chat-messages {
-  height: 400px;
+  height: 88%;
   background: whitesmoke;
   overflow: scroll;
   overflow-x: hidden;
@@ -215,6 +219,14 @@ body {
 
 .message .message-body {
   background: lightskyblue;
+}
+
+#show-users {
+  float: right;
+}
+
+#hide-chat{
+  float: left;
 }
 
 ul {

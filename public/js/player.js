@@ -1,6 +1,8 @@
 let socket = io();
 // let moment = require('moment');
 let name;
+let width = screen.width - 300;
+let height = screen.height - 180; 
 
 let joinSession = $("#name-button");
 joinSession.click(function(e){
@@ -62,8 +64,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: '520',
-        width: '750',
+        height: height,
+        width: width,
         videoId: 'OHviieMFY0c',
         playerVars: { 
             'autoplay': 0, 

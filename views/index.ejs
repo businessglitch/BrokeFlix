@@ -9,11 +9,14 @@
     <title>BrokeFlix</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+	<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/menu.min.css" rel="stylesheet">
+
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet" media="screen">  -->
 
-    <!-- Custom styles for this template -->
+	<!-- Custom styles for this template -->
+	
 	<link href="css/main.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css" rel="stylesheet">
 	
@@ -22,9 +25,10 @@
 
   </head>
   <body>
-    <!-- <div class="container"> <img src="img/logo.png"  width="250px" height="250px"/></div> -->
+	<!-- <div class="container"> <img src="img/logo.png"  width="250px" height="250px"/></div> -->
 
-    <div id="video-section" class="container">
+    <div id="video-section">
+		
       
           <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 		  <div id="player"></div>
@@ -48,23 +52,27 @@
 				</div>
 				<span id="videoDuration">4:28</span> 
 			</div>
+
+			 <!-- /.container -->
+			 <div id="videoSubmission"> 
+				<form class="form-inline" onsubmit="submitForm()" target="_blank">
+					<div class="form-group mx-sm-3 mb-2">
+						<!-- <label for="inputPassword2" class="sr-only">Video ID</label> -->
+						<input type="text" class="form-control" id="videoIdValue" placeholder="Enter Video URl here">
+					</div>
+					<button type="button" id="videoID" class="btn btn-success mb-2">Submit</button>
+				</form>
+			</div>
 			
       	</div>
-		 <!-- /.container -->
-		 <div id="videoSubmission"> 
-			<form class="form-inline" onsubmit="submitForm()" target="_blank">
-				<div class="form-group mx-sm-3 mb-2">
-					<!-- <label for="inputPassword2" class="sr-only">Video ID</label> -->
-					<input type="text" class="form-control" id="videoIdValue" placeholder="Enter Video URl here">
-				</div>
-				<button type="button" id="videoID" class="btn btn-primary mb-2">Submit</button>
-			</form>
-		</div>
+		
     </div>
 
 	<div id="chat-section">
 		<div id="chat-header">
+			<span id="hide-chat"><i class="arrow right icon"></i></span>
 			<span>Chat Messages</span>
+			<span id="show-users"><i class="users icon"></i></span>
 		</div>
 		<div id="chat-messages">
 			<ul id="chat-messages-list"></ul>
