@@ -14,44 +14,86 @@
     <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css" rel="stylesheet" media="screen">  -->
 
     <!-- Custom styles for this template -->
-    <link href="css/main.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css" rel="stylesheet">
+	
+	<!-- FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Alegreya|Noticia+Text|Spartan&display=swap" rel="stylesheet">
 
   </head>
   <body>
     <!-- <div class="container"> <img src="img/logo.png"  width="250px" height="250px"/></div> -->
 
-    <div class="container">
+    <div id="video-section" class="container">
       
           <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-      <div id="player"></div>
-      <div id="video-control-bar">
-        <div id="progressBar1">
-          <span id="videoRemainingTime">0:0</span> 
-          <div id="progressBar"></div>
-          <div id="square"></div>
-          <span id="videoDuration">4:28</span> 
-        </div>
-        <div id="player-controls">
-          <button id="playButton" type="button" class="btn btn-default" aria-label="Play">
-            <span class="glyphicon glyphicon-play"></span>
-          </button>
-          <button id="pauseButton" type="button" class="btn btn-default" aria-label="Pause">
-            <span class="glyphicon glyphicon-pause"></span>
-          </button>
-        </div>
-      </div>
-     
+		  <div id="player"></div>
+		  
+      	<div id="video-control-bar">
+			<!-- Buttons -->
+			<div id="player-controls">
+				<button id="playButton" type="button" class="btn btn-default" aria-label="Play">
+					<span class="glyphicon glyphicon-play"></span>
+				</button>
+				<button id="pauseButton" type="button" class="btn btn-default" aria-label="Pause">
+					<span class="glyphicon glyphicon-pause"></span>
+				</button>
+			</div>
+			
+			<!-- Progress Line -->
+			<div id="progressBar1">
+				<span id="videoRemainingTime">0:0</span> 
+				<div id="progressBar">
+					<div id="square"></div>
+				</div>
+				<span id="videoDuration">4:28</span> 
+			</div>
+			
+      	</div>
+		 <!-- /.container -->
+		 <div id="videoSubmission"> 
+			<form class="form-inline" onsubmit="submitForm()" target="_blank">
+				<div class="form-group mx-sm-3 mb-2">
+					<!-- <label for="inputPassword2" class="sr-only">Video ID</label> -->
+					<input type="text" class="form-control" id="videoIdValue" placeholder="Enter Video URl here">
+				</div>
+				<button type="button" id="videoID" class="btn btn-primary mb-2">Submit</button>
+			</form>
+		</div>
     </div>
-    <!-- /.container -->
-    <div class="container"> 
-      <form class="form-inline" onsubmit="submitForm()" target="_blank">
-      <div class="form-group mx-sm-3 mb-2">
-        <!-- <label for="inputPassword2" class="sr-only">Video ID</label> -->
-        <input type="text" class="form-control" id="videoIdValue" placeholder="VideoID">
-      </div>
-      <button type="button" id="videoID" class="btn btn-primary mb-2">Submit</button>
-    </form></div>
 
+	<div id="chat-section">
+		<div id="chat-header">
+			<span>Chat Messages</span>
+		</div>
+		<div id="chat-messages">
+			<ul id="chat-messages-list"></ul>
+		</div>
+
+		<div id="chat-send">
+			<form >
+				<input type="text" class="form-control" id="message-input" aria-describedby="" placeholder="Enter Name">
+				<button id="message-button" type="button" class="btn btn-success mb-2"><i class="paper plane icon"></i></button>
+
+			</form>
+		</div>
+	</div>
+	
+	<div id="home-section">
+		<div class="background-img">
+			<div class="layer" ></div>
+			<img  src="img/bg2.jpg" />
+			<img id="ytv-logo" src="img/ytv.png" />
+		</div>
+		
+		<span id="home-text">Quarantine & Chill</span>
+		<div id="name-entry">
+			<form >
+				<input type="text" class="form-control" id="name-input" aria-describedby="" placeholder="Enter Name">
+				<button id="name-button" type="button" class="btn btn-danger mb-2">JOIN SESSION</button>	
+			</form>
+		</div>
+	</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -61,6 +103,7 @@
     <!-- <script src="js/bootstrap.min.js"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script  src="js/player.js"></script>
+	<script  src="js/player.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   </body>
 </html>

@@ -19,5 +19,6 @@ socket.on("event", function(msg) {
     }
 });
 
+
 export default socket;
 // module.exports = {socket}

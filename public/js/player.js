@@ -1,3 +1,51 @@
+let socket = io();
+// let moment = require('moment');
+let name;
+
+let joinSession = $("#name-button");
+joinSession.click(function(e){
+    name = $("#name-input").val();
+    if (name.length < 3) return;
+
+
+    let myData = {name, id: socket.id}
+    socket.emit("register", myData);
+
+    $("#home-section").hide();
+    $("#video-section").show();
+    $("#chat-section").show();
+});
+
+let sendMessage = $("#message-button");
+sendMessage.click(function(e){
+    let message = $("#message-input").val();
+    if (message.length < 1) return;
+
+    let time = moment().format('LT');  
+    console.log(time);
+    let html = `<li class="my-message"><span class="message-name">${name}  ${time}</span><span class="message-body">${message}<span></li>`
+    $('#chat-messages-list').append(html);
+
+    let myData = {message, id: socket.id}
+    socket.emit("message", myData);
+    console.log("emitted", myData);
+})
+
+
+
+function setTimestamp() {
+    let currentTime = Date.now();
+
+    
+    return `${rhours}:${rminutes}`
+}
+
+
+
+
+
+
+
 // 2. This code loads the IFrame Player API code asynchronously.
 // import socket from './socket-connection.js';
 // console.log("socket", socket);
@@ -14,8 +62,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: '480',
-        width: '640',
+        height: '520',
+        width: '750',
         videoId: 'OHviieMFY0c',
         playerVars: { 
             'autoplay': 0, 
@@ -60,7 +108,10 @@ function getDuration() {
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
 function onPlayerStateChange(event) {
-    console.log(event.data)
+    if(event.data == YT.PlayerState.PLAYING) {
+        console.log()
+    }
+
 }
 function stopVideo() {
     player.stopVideo();
@@ -119,7 +170,7 @@ function progressBarLoop() {
         }
         let fraction = (getCurrentTime()/getDuration()) * 100;
         $("#videoRemainingTime").text(convertSecondsToString(getCurrentTime()));
-        console.log(convertSecondsToString(getCurrentTime()));
+
         progressSquare.css('left', fraction.toString()+'%');
     },200);
 }
@@ -128,7 +179,8 @@ function showPlayerErrors(event) {
     console.log("event", event);
 }
 
-function changeVideo(id) {
+function changeVideo(url) {
+    let id = url.slice(url.indexOf("=") + 1, url.length)
     player.loadVideoById(id)
 }
 
@@ -139,7 +191,7 @@ function convertSecondsToString(time){
     return `${minutes}:${seconds}`;
 }
 
-let socket = io();
+
 
 socket.on("event", function(msg) {
     switch(msg.state){
@@ -160,4 +212,17 @@ socket.on("event", function(msg) {
 
         default:
     }
+});
+
+
+socket.on("register", function(user) {
+    let html = `<li class="joined-message"> ${user.name} joined </li>`
+    $('#chat-messages-list').append(html);
+    console.log('users: ', user);
+});
+
+socket.on("all-messages", function(data) {
+    console.log(data, 'recieved');
+    let html = `<li class="message"><span class="message-name">${data.name}</span><span class="message-body">${data.message}<span></li>`
+    $('#chat-messages-list').append(html);
 });
