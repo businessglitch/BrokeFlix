@@ -3,7 +3,7 @@ let socket = io();
 let name;
 
 let width;
-let height = screen.height - 180; 
+let height = screen.height - 300; 
 
 if (/Mobi/.test(navigator.userAgent)) {
     // mobile!
