@@ -1,18 +1,34 @@
 let socket = io();
 // let moment = require('moment');
 let name;
-let width = screen.width - 300;
+
+let width;
 let height = screen.height - 180; 
+
+if (/Mobi/.test(navigator.userAgent)) {
+    // mobile!
+    width = screen.width;
+    height -= 200;
+} else {
+    width = screen.width - 300;
+}
+
+let progressBarLength = Math.floor(0.5 * width);
+
+let setupProgressBarLength = (length) => {
+    $("#progressBar").width(length);
+};
+
 
 let joinSession = $("#name-button");
 joinSession.click(function(e){
     name = $("#name-input").val();
     if (name.length < 3) return;
 
-
     let myData = {name, id: socket.id}
     socket.emit("register", myData);
 
+    setupProgressBarLength(progressBarLength);
     $("#home-section").hide();
     $("#video-section").show();
     $("#chat-section").show();
@@ -61,18 +77,26 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
+
 let player;
+let player_data;
+let videoID;
+
+socket.on("welcome", (data) => {
+    seekToTime(data.time);
+});
+
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: height,
         width: width,
-        videoId: 'OHviieMFY0c',
+        videoId: 'euy6ZoFLIqA',
         playerVars: { 
             'autoplay': 0, 
             'controls': 0,
             'disablekb': 1,
-            'modestbranding': 1,
-            'rel': 1,
+            'modestbranding': 0,
+            'rel': 0,
 
         },
         events: {
@@ -87,6 +111,10 @@ function onPlayerReady(event) {
     progressBarLoop();
     initalizeButtons();  
     $("#videoDuration").text(convertSecondsToString(getDuration()))
+}
+
+function getVideoID() {
+    return player['g']['g'].videoId;
 }
 
 function playVideo(){
@@ -129,16 +157,14 @@ function initalizeButtons(){
     let videoIDButton = $("#videoID");
 
     playButton.click(function(event){
-    //    playVideo();
+        let myData = {state:'play', time: getCurrentTime(), value: getVideoID()}
 
-        let myData = {state:'play', time: getCurrentTime()}
         socket.emit('event', myData);
     });
 
     pauseButton.click(function(event){
-    //    pauseVideo();
+        let myData = {state:'pause', time: getCurrentTime(), value: getVideoID()}
 
-        let myData = {state:'pause', time: getCurrentTime()}
         socket.emit('event', myData);
     });
 
@@ -146,7 +172,7 @@ function initalizeButtons(){
         let videoIDValue  = $("#videoIdValue").val();
         if (videoIDValue == null || videoIDValue.length < 11) return ;
         
-        let myData = {state: 'form', value: videoIDValue}
+        let myData = {state: 'form', value: videoIDValue, time: getCurrentTime()}
         socket.emit("event", myData);
     });
 }
@@ -159,7 +185,7 @@ function progressBarLoop() {
     progressBar.click(function(event){
         // send seek request
         let divOffset = $(this).offset();
-        let seekTo = (event.pageX - divOffset.left)/600*videoLength;
+        let seekTo = (event.pageX - divOffset.left)/progressBarLength*videoLength;
         let myData = {state: 'play', time: seekTo};
 
         seekToTime(seekTo);
@@ -172,7 +198,6 @@ function progressBarLoop() {
         }
         let fraction = (getCurrentTime()/getDuration()) * 100;
         $("#videoRemainingTime").text(convertSecondsToString(getCurrentTime()));
-
         progressSquare.css('left', fraction.toString()+'%');
     },200);
 }
@@ -220,7 +245,8 @@ socket.on("event", function(msg) {
 socket.on("register", function(user) {
     let html = `<li class="joined-message"> ${user.name} joined </li>`
     $('#chat-messages-list').append(html);
-    console.log('users: ', user);
+
+    socket.emit('updateTime',{time: getCurrentTime(), id: user.id});
 });
 
 socket.on("all-messages", function(data) {
@@ -228,3 +254,4 @@ socket.on("all-messages", function(data) {
     let html = `<li class="message"><span class="message-name">${data.name}</span><span class="message-body">${data.message}<span></li>`
     $('#chat-messages-list').append(html);
 });
+

@@ -14,32 +14,47 @@ app.get('/', (req, res) => res.render('index'))
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 let userNames = {};
+let player = {
+  time: 0
+};
 
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('event', function(msg){
-    io.emit('event', msg)
-  });
-
-  socket.on('disconnect', function(){
-    console.log('user disconnected', socket.id);
-    delete userNames[socket.id]
-  });
-
-  socket.on('message', function(data){
-    let name = userNames[data.id];
-    console.log("here",name);
-
-    socket.broadcast.emit('all-messages', {name, message:data.message})
-  });
+  	// sending to the client
 
 
-  socket.on("register", function(data) {
-    let userName = data.name;
-    let userId = data.id;
-    userNames[userId] = userName;
+	//console.log('a user connected');
+	socket.on('event', function(msg){
+		console.log('msg', msg)
+		io.emit('event', msg)
+	});
 
-    socket.broadcast.emit('register', {name:userName, users:userNames})
-  });
+	socket.on('disconnect', function(){
+		//console.log('user disconnected', socket.id);
+		delete userNames[socket.id]
+	});
+
+	socket.on('updateTime', function(data){
+		console.log('data', data);
+		player.time = data.time;
+		
+		io.to(data.id).emit('welcome', player);
+	});
+
+	socket.on('message', function(data){
+		let name = userNames[data.id];
+		//console.log("here",name);
+
+		socket.broadcast.emit('all-messages', {name, message:data.message})
+	});
+
+	socket.on("register", function(data) {
+		let userName = data.name;
+		let userId = data.id;
+		userNames[userId] = userName;
+
+		socket.broadcast.emit('register', {name:userName, users:userNames, id: userId});
+
+		return true;
+	});
 
 });
