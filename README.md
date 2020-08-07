@@ -18,7 +18,7 @@ These instructions will get you a copy of the project and have the app running o
 
 #### Clone
 
-- Clone this repo to your local machine using `https://github.com/businessglitch/Carleton-rooms.git`
+- Clone this repo to your local machine using `https://github.com/businessglitch/BrokeFlix.git`
 
 #### Setup
 > move into the project directory
