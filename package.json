@@ -1,19 +1,26 @@
 {
-  "name": "node-js-template",
+  "name": "BrokeFlix",
   "version": "1.0.0",
-  "description": "joma's template",
-  "main": "index.js",
+  "description": "Youtube video sycnronization app",
+  "main": "server.js",
   "dependencies": {
-    "ejs": "^2.5.9",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
-    "request": "^2.85.0",
-    "socket.io": "^2.3.0",
-    "tape": "^4.9.0"
+    "morgan": "^1.10.0",
+    "react-youtube": "^7.11.2",
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  },
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "repository": {
     "type": "git",
@@ -22,10 +29,6 @@
   "keywords": [
     "node"
   ],
-  "author": "Joma",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jomaoppa/node-js-template/issues"
-  },
-  "homepage": "https://github.com/jomaoppa/node-js-template#readme"
+  "author": "Fahad Hayat",
+  "license": "MIT"
 }
