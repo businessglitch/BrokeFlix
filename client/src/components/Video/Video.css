@@ -1,0 +1,110 @@
+#videoSection {
+	display: inline-block;
+	flex-direction: column;
+	align-items: end;
+	justify-content: end;
+	min-height: 100vh;
+	padding: 10px;
+}
+
+#videoSection iframe {
+  	border-radius: 25px;
+}
+  
+#video-control-bar { 
+    position: relative;
+    bottom: 55px;
+    padding: 20px;
+    margin-left: 5px;
+}
+  
+#progressBar {
+    width: 360px;
+    height: 3px;
+    background: white;
+    float: left;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+  
+#player-controls {
+    float: left;
+}
+  
+#square {
+    background-color: red;
+    top: -5px;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    border-radius: 10px;
+}
+  
+#videoRemainingTime, #videoDuration {
+    color:white;
+    float: left;
+	padding-left: 5px;
+}
+    
+#videoIdValue {
+    width: 300px;
+}
+  
+#video-id-button {
+	margin-right: 10px;
+	margin-bottom: 0 !important;
+	background-color: #F65264;
+    color: white;
+}
+  
+
+/* Code from https://codepen.io/OxyDesign/pen/ojpepQ?editors=1100  */ 
+/* Play / Pause Buttons */
+.play-button {
+	position: relative;
+	width: 15px;
+	height: 15px;
+}
+.play-button .arrow {
+	position: absolute;
+	top: 0;
+	transition-property: width;
+	transition-duration: 0.25s;
+	transition-timing-function: ease;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+}
+.play-button .arrow:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	transition-property: border,height;
+	transition-duration: 0.25s;
+	transition-timing-function: ease;
+	border-style: solid;
+	border-width: 8px 15px;
+	border-color: transparent transparent transparent rgba(255, 255, 255);
+	width: 0;
+	height: 0;
+}
+.play-button .arrow-left {
+	left: 0;
+}
+.play-button .arrow-left:after {
+	left: 0;
+}
+.play-button .arrow-right {
+	right: 0;
+}
+.play-button .arrow-right:after {
+	right: -15px;
+}
+.play-button.active .arrow {
+	width: 40%;
+}
+.play-button.active .arrow:after {
+	border-width: 0 15px;
+	height: 15px;
+}
