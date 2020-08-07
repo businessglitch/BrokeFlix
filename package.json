@@ -20,7 +20,7 @@
     "start": "node server",
     "server": "nodemon server",
     "client": "npm start --prefix client",
-    "heroku-postbuild": "cd client && npm install && npm run build && npm start build",
+    "heroku-postbuild": "cd client && npm install && npm run start",
     "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "repository": {
