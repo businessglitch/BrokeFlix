@@ -1,30 +1,63 @@
-# node-js-template
+	
+# BrokeFlix
+ The web-app allows you synchronize your youtube videos with your loved ones! More like Netflix on a budget ;)
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+## Getting Started
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+These instructions will get you a copy of the project and have the app running on your local machine for development and testing purposes. 
 
-## Running Locally
+### Built With
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
+* [EJS](https://ejs.co/) - FrontEnd
+* [SocketsIO](https://socket.io/) - Sockets
+* [Node/Express](https://expressjs.com) - Backend framework
+* [Bootstrap](https://getbootstrap.com/) - Styling
+* [Youtube Api](https://developers.google.com/youtube/iframe_api_reference) - Youtube Embedded API
+* [Heroku](https://www.heroku.com/) - Hosting
 
-```sh
-$ git clone git@github.com:jomaoppa/node-js-template.git # or clone your own fork
-$ cd node-js-template
+
+#### Clone
+
+- Clone this repo to your local machine using `https://github.com/businessglitch/Carleton-rooms.git`
+
+#### Setup
+> move into the project directory
+
+```shell
+$ cd BrokeFlix
+```
+
+> update all the packages
+
+```shell
+$ brew update
+```
+
+> install dependencies
+
+```shell
 $ npm install
+```
+
+
+> run the application
+In the root directory
+```shell
 $ npm start
 ```
+---
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+## Support
 
-## Deploying to Heroku
+Feel free to reach out to me at:
 
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
+- Instagram at <a href="https://www.instagram.com/fahoodii_h/" target="_blank">`@fahoodii_h`</a>
+- LinkedIn at <a href="https://www.linkedin.com/in/fahdhayat/" target="_blank">`Fahad Hayat`</a>
+---
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+## License
 
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2015 © <a href="http://fvcproductions.com" target="_blank">FVCproductions</a>.
