@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv');
 const colors = require('colors')
 const morgan = require('morgan');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
