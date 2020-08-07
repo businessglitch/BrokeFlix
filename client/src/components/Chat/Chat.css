@@ -1,0 +1,90 @@
+/* CHAT WINDOW */
+
+#chatSection {
+  margin-right: 20px;
+  background-color: #f7f7f7;
+  display: inline-block;
+  min-height: 360px;
+  vertical-align: top;
+  width: 450px;
+  border-radius: 25px;
+  float: right;
+  outline: none;
+  }
+    
+
+#chat-header {
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  border-bottom: solid 1px rgba(0,0,0,0.1)
+}
+
+
+#chat-send {
+  position: sticky;
+  top: 100%;
+  height: 50px;
+  background: grey;
+}
+
+#chat-messages {
+  background: whitesmoke;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 265px;
+}
+
+#message-input {
+  width: 100%;
+  height: 50px;
+}
+
+#message-button {
+  height: 50px;
+  color: white;
+  background-color: #F65264;
+}
+
+.joined-message, .message-name {
+  font-size: 13px;
+  color: grey;
+  margin: 10px;
+  list-style-type: none;
+  display: block;
+}
+
+
+
+.message-body {
+  padding: 5px;
+  border-radius: 6px;
+  margin: 10px;
+}
+
+.my-message {
+    text-align: right;
+  }
+.my-message .message-body {
+  background: lightgreen;
+}
+
+.message .message-body {
+  background: lightskyblue;
+}
+
+#show-users {
+  float: right;
+}
+
+#hide-chat{
+  float: left;
+}
+
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
+}
