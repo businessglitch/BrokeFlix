@@ -11,6 +11,12 @@ dotenv.config({path: './config/config.env'})
 if (process.env.NODE_ENV == "development") {
     app.use(morgan('dev'))
 }
+app.use(express.static(path.join(__dirname, 'client/build')));
+// Handle React routing, return all requests to React app
+app.get('*', function(req, res) {
+res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 
 const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`.yellow.bold))
 const io = require('socket.io').listen(server);
